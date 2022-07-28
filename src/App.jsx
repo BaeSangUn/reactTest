@@ -1,53 +1,38 @@
 import React, { useState } from "react";
+import Counter from "./components/Counter";
+import NameChange from "./components/NameChange";
+import Plusarticle from "./components/Plusarticle";
+import Converter from "./components/Converter";
+import Mybutton from "./components/Mybutton";
 
 function App() {
   const [counter, setCounter] = useState(0);
-  const [name, setName] = useState("사용자");
-  const [articles, setArticles] = useState([
-    {
-      subject: "글 1번",
-      content: "내용 1번",
-    },
-    {
-      subject: "글 2번",
-      content: "내용 2번",
-    },
-  ]);
-
-  const onClickFunc = () => {
-    setCounter(counter + 1);
-  };
-  const changeName = () => {
-    setName("김범수");
-  };
-
-  const addArticle = () => {
-    setArticles(
-      articles.concat({
-        subject: "글 3번",
-        content: "내용 3번",
-      })
-    );
-  };
-
   return (
-    <div>
-      <div>환영합니다 {name}님</div>
-      <div>{counter}번 클릭했습니다</div>
-      <button onClick={changeName}>이름변경</button>
-      <button onClick={onClickFunc}>Click me</button>
-      <ul>
-        {articles.map((article, index) => {
-          return (
-            <li key={index}>
-              <div>제목: {article.subject}</div>
-              <div>내용: {article.content}</div>
-            </li>
-          );
-        })}
-      </ul>
-      <button onClick={addArticle}>게시물 추가</button>
-    </div>
+    <>
+      <Counter counter={counter} setCounter={setCounter} />
+      <Converter counter={counter} />
+      <NameChange />
+      <Plusarticle />
+      <br />
+      <Mybutton
+        text={"1번"}
+        fontSize={"10px"}
+        isChecked={true}
+        alertMsg={"1번 버튼 클릭됨"}
+      />
+      <Mybutton
+        text={"2번"}
+        fontSize={"12px"}
+        isChecked={false}
+        alertMsg={"2번 버튼 클릭됨"}
+      />
+      <Mybutton
+        text={"3번"}
+        fontSize={"15px"}
+        isChecked={false}
+        alertMsg={"3번 버튼 클릭됨"}
+      />
+    </>
   );
 }
 
